@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz App - Result</title>
+    <link rel="stylesheet" href="../styles/result.css">
+    <link rel="stylesheet" href="../styles/quiz.css">
+</head>
+
+<body>
+    <div class="result-box custome-box mainBox">
+        <h1>Quiz Result</h1>
+        <table>
+            <tr>
+                <td>Name</td>
+                <td><span class="examinee-name"></span></td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td><span class="examinee-email"></span></td>
+            </tr>
+            <tr>
+                <td>Total Question</td>
+                <td><span class="tot-question"></span></td>
+            </tr>
+            <tr>
+                <td>Attempt</td>
+                <td><span class="tot-attempt"></span></td>
+            </tr>
+            <tr>
+                <td>Correct</td>
+                <td><span class="tot-correct"></span></td>
+            </tr>
+            <tr>
+                <td>Wrong</td>
+                <td><span class="tot-wrong"></span></td>
+            </tr>
+            <tr>
+                <td>Percentage</td>
+                <td><span class="tot-percentage"></span></td>
+            </tr>
+            <tr>
+                <td>Your Total Score</td>
+                <td><span class="tot-score"></span></td>
+            </tr>
+
+        </table>
+
+        <br />
+        <h1>Correct Answers</h1>
+        <div id="qna">
+
+        </div>
+        <button onclick="logout()" type="button" class="btn" style="background-color: red;">Logout</button>
+    </div>
+</body>
+<script src="../scripts/result.js"></script>
+
+</html>

@@ -1,0 +1,52 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600&display=swap");
+
+body {
+  margin: 0;
+  font-size: 16px;
+  background-image: url("https://img.freepik.com/free-vector/hand-drawn-colorful-science-education-wallpaper_23-2148489183.jpg?size=626&ext=jpg");
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  margin-top: 30px;
+  outline: none;
+}
+
+#qna {
+  text-align: left;
+}
+
+.mainBox {
+  height: 100vh;
+  overflow: scroll;
+}
+
+.mainBox > h1 {
+  margin-bottom: 20px;
+}
+
+.mainBox::-webkit-scrollbar {
+  display: none;
+}
+
+.question-container {
+  border: 2px solid gray;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 20px;
+}
+
+.question-container > h3 {
+  border-radius: 10px;
+  padding: 10px;
+}

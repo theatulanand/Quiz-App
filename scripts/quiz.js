@@ -7,6 +7,7 @@ const quizBox = document.querySelector(".quiz-box");
 const resultBox = document.querySelector(".result-box");
 const name = document.querySelector(".name");
 const user = JSON.parse(localStorage.getItem("loggedInUser"));
+const answers = [];
 
 
 let questionCounter = 0;
@@ -22,12 +23,18 @@ if (!user) {
 	window.location.href = "../index.html";
 }
 
+// checking if user is already attempted the test or not
+if (user.answers) {
+	// if user is already attempted the quiz 
+	document.getElementById("start-quiz-btn").innerHTML = "Attempt Again"
+}
+
 // Show the name of user on quiz page
 document.getElementById("userName").innerHTML = "Examinee Name : " + user.name;
 document.querySelector(".examinee-name").innerHTML = user.name;
 document.querySelector(".examinee-email").innerHTML = user.email;
 
-//Push the quetions into availableQuestions array
+//Push the questions into availableQuestions array
 function setAvailableQuestions() {
 	const totalQuestions = quiz.length;
 	for (let i = 0; i < totalQuestions; i++) {
@@ -48,7 +55,7 @@ function getNewQuestion() {
 	const questionIndex = availableQuestions[Math.floor(Math.random() * availableQuestions.length)];
 	currentQuestion = questionIndex;
 	questionText.innerHTML = currentQuestion.q;
-
+	answers.push(currentQuestion);
 	//get the position of 'questionIndex' from the avaible questions array;
 	const index1 = availableQuestions.indexOf(questionIndex);
 	//remove the 'questionIndex' from the avaibaleQuestion array,so the question won't repeate again
@@ -73,9 +80,6 @@ function getNewQuestion() {
 		const index2 = availableOptions.indexOf(optionIndex);
 		//removes the 'optionIndex' from the availableOptions, so that option does not repeat
 		availableOptions.splice(index2, 1);
-
-
-
 		const option = document.createElement("div");
 		option.innerHTML = currentQuestion.options[optionIndex];
 		option.id = optionIndex;
@@ -93,7 +97,10 @@ function getNewQuestion() {
 function getResult(element) {
 	document.getElementById("skipBtn").innerHTML = "Next"
 	const id = parseInt(element.id);
+	answers.pop();
 	console.log(currentQuestion);
+	currentQuestion.givenAnswer = id;
+	answers.push(currentQuestion);
 	//fetch the answer by comparing the id of clicked option
 	if (id === currentQuestion.answer) {
 		//set the green color to the correct option
@@ -160,6 +167,16 @@ function quizOver() {
 	quizBox.classList.add("hide");
 	//show result box
 	resultBox.classList.remove("hide");
+
+	// Saving answered question to local storage with respective user;
+	const users = JSON.parse(localStorage.getItem("users"));
+	const filteredUsers = users.filter((el) => el.email != user.email);
+	user.answers = answers;
+	user.correctAnswers = correctAnswers;
+	user.attempt = attempt;
+	filteredUsers.push(user);
+	localStorage.setItem("users", JSON.stringify(filteredUsers));
+	localStorage.setItem("loggedInUser", JSON.stringify(user));
 	quizResult();
 }
 
@@ -202,4 +219,8 @@ function rEload() {
 function logout() {
 	localStorage.removeItem("loggedInUser");
 	window.location.href = "../index.html"
+}
+
+function viewDetailedResult() {
+	window.location.href = "../pages/result.html"
 }
