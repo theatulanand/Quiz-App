@@ -10,7 +10,7 @@ const quiz = [
 	},
 	{
 		q: 'Which of the following tag is used to define options in a drop-down selection list?',
-		options: ['<list>', '<dropdown>', '<option>'],
+		options: ['list', 'dropdown', 'option'],
 		answer: 2
 	},
 	{
@@ -24,12 +24,12 @@ const quiz = [
 		answer: 1
 	},
 	{
-		q: 'The <hr> tag in HTML is used for -',
+		q: 'The hr tag in HTML is used for -',
 		options: ["New Paragraph", 'Bracket', 'Heading', 'Horizontal ruler'],
 		answer: 3
 	},
 	{
-		q: "<input> is -",
+		q: "input tag is -",
 		options: ['A formate tag', "An empty tag", 'None'],
 		answer: 1
 	},
@@ -40,12 +40,12 @@ const quiz = [
 	},
 	{
 		q: "How to create an ordered list (a list with the list items in numbers) in HTML?  ",
-		options: ["<li>", "<l>", "<ol>"],
+		options: ["li", "l", "ol", "none"],
 		answer: 2
 	},
 	{
 		q: "Which of the following element is responsible for making the text bold in HTML?",
-		options: ["<pre>", "<b>", "<br>"],
+		options: ["pre", "b", "br"],
 		answer: 1
 	},
 	{
