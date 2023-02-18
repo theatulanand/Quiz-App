@@ -1,6 +1,6 @@
-var x = document.getElementById("login");
-var y = document.getElementById("register");
-var z = document.getElementById("btn");
+const x = document.getElementById("login");
+const y = document.getElementById("register");
+const z = document.getElementById("btn");
 
 function changeToRegister() {
     x.style.left = "-400px"
@@ -11,6 +11,12 @@ function changeToLogin() {
     x.style.left = "50px"
     y.style.left = "-400px"
     z.style.left = "0"
+}
+
+// If user is already loggedIn
+const loggedInUser = localStorage.getItem("loggedInUser");
+if (loggedInUser) {
+    window.location.href = "../pages/quiz.html"
 }
 function register(event) {
     event.preventDefault();
@@ -24,9 +30,6 @@ function register(event) {
     for (let i = 0; i < users.length; i++) {
         if (users[i].email == email) {
             alert("Email Already Registered, Please Login");
-            document.getElementById("name").value = "";
-            document.getElementById("email").value = "";
-            document.getElementById("password").value = "";
             changeToLogin();
             return;
         }
@@ -37,26 +40,25 @@ function register(event) {
         email,
         password
     };
-
+    console.log(newUser)
     users.push(newUser);
     localStorage.setItem("users", JSON.stringify(users));
     alert("User Registration Successful");
-    document.getElementById("name").value = "";
-    document.getElementById("email").value = "";
-    document.getElementById("password").value = "";
     changeToLogin();
 }
 function login(event) {
     event.preventDefault();
     let users = JSON.parse(localStorage.getItem('users')) || [];
 
-    let email = document.getElementById("email").value;
-    let password = document.getElementById("password").value;
+    let email = document.getElementById("loginEmail").value;
+    let password = document.getElementById("loginPassword").value;
 
     for (let i = 0; i < users.length; i++) {
         if (users[i].email == email) {
             if (users[i].password == password) {
                 alert("Login Success");
+                window.location.href = "../pages/quiz.html";
+                localStorage.setItem("loggedInUser", JSON.stringify(users[i]));
                 return;
             } else {
                 alert("Invalid Password");
@@ -66,7 +68,5 @@ function login(event) {
     }
 
     alert("Email Not Found, Create account first !!");
-    document.getElementById("email").value = "";
-    document.getElementById("password").value = "";
     changeToRegister();
 }
